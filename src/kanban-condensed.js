@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MEDIA FACTORY: JIRA Kanban Board Condensed
 // @namespace    http://jira.mediafactory.cz/
-// @version      1.0
+// @version      1.1
 // @description  Make your eyes *not* to bleed with new board.
 // @author       Jakub Rychecký <jakub@rychecky.cz>
 // @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?rapidView=96*
@@ -12,8 +12,10 @@
 const hiddenColumnsIds = [836]; // Acceptance column
 
 const cssFixVersion = {
-    'color': '#E30E0E',
+    'color': '#444444',
     'font-weight': 'bold',
+    'font-size': '11px',
+    'margin-right': '5px',
 };
 
 const cssLabels = {
