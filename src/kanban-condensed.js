@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MEDIA FACTORY: JIRA Kanban Board Condensed
 // @namespace    http://jira.mediafactory.cz/
-// @version      0.2
+// @version      1.0
 // @description  Make your eyes *not* to bleed with new board.
 // @author       Jakub Rychecký <jakub@rychecky.cz>
 // @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?rapidView=96*
@@ -117,6 +117,13 @@ const cssExtraFields = {
                     'padding-right': '25px',
                 });
             }
+
+            // Issue card aging
+            let age = parseInt(issue.find('.ghx-days').attr('title'));
+            let opacity = 1 - (age / 100 * 2);
+            issue.css({
+               'opacity': opacity <= 0.2 ? 0.2 : opacity,
+            });
         });
 
     });
