@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MEDIA FACTORY: JIRA Kanban Board Condensed
 // @namespace    http://jira.mediafactory.cz/
-// @version      1.1
+// @version      1.2
 // @description  Make your eyes *not* to bleed with new board.
 // @author       Jakub Rychecký <jakub@rychecky.cz>
 // @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?rapidView=96*
@@ -49,20 +49,23 @@ const cssExtraFields = {
 
 const agingMinimalOpacity = 0.5; // 1.0 = disabled aging at all
 
+
+
 // ----------------------------------
 
 
-(function () {
-    // Hide columns
-    hiddenColumnsIds.forEach((id) => {
-        $('.ghx-column[data-id=' + id + '], .ghx-column[data-column-id= ' + id + ']').hide();
-    });
 
+(function () {
     // Header remove for more vertical space
     $('#ghx-header').remove();
 
 
     $(document).ajaxComplete(() => {
+        // Hide columns
+        hiddenColumnsIds.forEach((id) => {
+            $('.ghx-column[data-id=' + id + '], .ghx-column[data-column-id= ' + id + ']').hide();
+        });
+
         // EACH ISSUE EDITS
         $('.ghx-issue').each((i, element) => {
             const issue = $(element);
