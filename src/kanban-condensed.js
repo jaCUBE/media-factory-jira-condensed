@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         MEDIA FACTORY: JIRA Kanban Board Condensed
 // @namespace    http://jira.mediafactory.cz/
-// @version      1.2
+// @version      1.3
 // @description  Make your eyes *not* to bleed with new board.
 // @author       Jakub Rychecký <jakub@rychecky.cz>
-// @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?rapidView=96*
+// @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?*rapidView=96*
 // @grant        none
 // ==/UserScript==
 
@@ -103,7 +103,7 @@ const agingMinimalOpacity = 0.5; // 1.0 = disabled aging at all
                 label.text(label.text().toUpperCase());
             });
 
-            // Fix version: highligh
+            // Fix version: highlight
             issue.find('[data-tooltip^="Fix"]').each((x, elementRow) => {
                 $(elementRow).css(cssFixVersion);
             });
