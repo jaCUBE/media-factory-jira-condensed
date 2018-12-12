@@ -45,6 +45,8 @@ const cssExtraFields = {
     'margin-top': '5px',
 };
 
+const isCardAging = true; // Opacity change for older cards
+
 // ----------------------------------
 
 
@@ -119,11 +121,13 @@ const cssExtraFields = {
             }
 
             // Issue card aging
-            let age = parseInt(issue.find('.ghx-days').attr('title'));
-            let opacity = 1 - (age / 100 * 2);
-            issue.css({
-               'opacity': opacity <= 0.2 ? 0.2 : opacity,
-            });
+            if (isCardAging) {
+                let age = parseInt(issue.find('.ghx-days').attr('title'));
+                let opacity = 1 - (age / 100 * 2);
+                issue.css({
+                    'opacity': opacity <= 0.2 ? 0.2 : opacity,
+                });
+            }
         });
 
     });
