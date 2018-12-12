@@ -27,15 +27,21 @@ const cssEpic = {
 };
 
 const cssIssueSummary = {
-    'font-size': '13px',
+    'font-size': '12px',
 };
 
 const cssIssueContent = {
     'padding': '5px 5px 5px 35px',
 };
 
+const cssAvatar = {
+    'width': '22px',
+    'height': '22px',
+};
+
 // General CSS for extra fields as time, labels, epic...
 const cssExtraFields = {
+    'display': 'inline-flex',
     'margin-top': '5px',
 };
 
@@ -61,7 +67,7 @@ const cssExtraFields = {
             issue.find('.ghx-issue-content').css(cssIssueContent);
 
 
-            // Hide "None" rows
+            // Hide annoying "None" rows
             issue.find('.ghx-extra-field').each((x, elementRow) => {
                 let row = $(elementRow);
 
@@ -71,32 +77,46 @@ const cssExtraFields = {
             });
 
 
-            // Smaller issue text
+            // Issue text: style
             issue.find('.ghx-summary').css(cssIssueSummary);
 
-            // Smaller epic link
+            // Epic: style
             issue.find('.aui-label[data-epickey]').css(cssEpic);
 
-            // Remove logged time from card
+            // Time: remove logged time from card
             issue.find('[data-tooltip*="Progress"]').remove();
 
 
-            // Change style of labels
+            // Labels: style
             issue.find('[data-tooltip^="Labels"]').css(cssLabels);
 
-            // Normalize label case
+            // Labels: normalize letter case
             issue.find('[data-tooltip^="Labels"]').each((x, elementRow) => {
                 let label = $(elementRow);
                 label.text(label.text().toUpperCase());
             });
 
-            // Highligh for fix version
+            // Fix version: highligh
             issue.find('[data-tooltip^="Fix"]').each((x, elementRow) => {
                 $(elementRow).css(cssFixVersion);
             });
 
-            // Margin of epic link
+            // Epic, labels: margin
             issue.find('.ghx-highlighted-fields, .ghx-extra-fields').css(cssExtraFields);
+
+            // Avatar: default avatar size
+            issue.find('.ghx-avatar img').css(cssAvatar);
+
+            // Avatar: wider card content if no avatar is assigned
+            if (issue.find('.ghx-avatar img').length === 0) {
+                issue.find('.ghx-issue-fields').css({
+                   'padding': '0px',
+                });
+            } else {
+                issue.find('.ghx-issue-fields').css({
+                    'padding-right': '25px',
+                });
+            }
         });
 
     });
