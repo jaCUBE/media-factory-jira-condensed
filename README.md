@@ -13,4 +13,3 @@ https://greasyfork.org/cs/scripts/375433-media-factory-jira-kanban-board-condens
 
 **Board Filtering:**
 - Press `F` to fast focus filter input
-- Press `ESC` to fast clear filter
