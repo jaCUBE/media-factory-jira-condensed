@@ -8,3 +8,9 @@ https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldm
 
 Install script itself via GreasyFork:
 https://greasyfork.org/cs/scripts/375433-media-factory-jira-kanban-board-condensed
+
+## Tips
+
+**Board Filtering:**
+- Press `F` to fast focus filter input
+- Press `ESC` to fast clear filter

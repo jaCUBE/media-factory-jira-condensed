@@ -145,8 +145,8 @@ const agingMinimalOpacity = 0.5; // 1.0 = disabled aging at all
 
 function jiraBoardFilter() {
     // Filter input
-    let input = $('<input>').attr('type', 'text').attr('id', 'jira');
-    input.attr('placeholder', 'Filter').css({'margin-top': '5px'});
+    let input = $('<input>').attr('type', 'text').addClass('jira-media-factory');
+    input.attr('placeholder', 'Filter (press F)').css({'margin-top': '5px'});
 
     // Filtering
     input.on('keyup', () => {
@@ -178,4 +178,12 @@ function jiraBoardFilter() {
 
     // Injecting filter input
     $('.ghx-controls-work').append(input);
+
+    // Filter shortcut: F to focus filter
+    $(document).keypress((e) => {
+        if (e.charCode === 102) { // F key
+            $('.jira-media-factory').focus();
+            e.preventDefault();
+        }
+    });
 }
