@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MEDIA FACTORY: JIRA Kanban Board Condensed
 // @namespace    http://jira.mediafactory.cz/
-// @version      1.3
+// @version      1.4
 // @description  Make your eyes *not* to bleed with new board.
 // @author       Jakub Rychecký <jakub@rychecky.cz>
 // @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?*rapidView=96*
@@ -33,7 +33,8 @@ const cssIssueSummary = {
 };
 
 const cssIssueContent = {
-    'padding': '5px 5px 5px 35px',
+    'padding': '5px 5px 0px 35px',
+    'min-height': '0px',
 };
 
 const cssAvatar = {
@@ -125,8 +126,11 @@ const agingMinimalOpacity = 0.5; // 1.0 = disabled aging at all
                 });
             }
 
+            // Days: remove bar with days spent in column chart
+            issue.find('.ghx-days').remove();
+
             // Issue card aging
-            if (agingMinimalOpacity <= 1.0) {
+            if (agingMinimalOpacity < 1.0) {
                 let age = parseInt(issue.find('.ghx-days').attr('title'));
                 let opacity = 1 - (age / 100 * 2);
                 issue.css({
