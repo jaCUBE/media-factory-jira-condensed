@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MEDIA FACTORY: JIRA Kanban Board Condensed
 // @namespace    http://jira.mediafactory.cz/
-// @version      2.0
+// @version      2.1
 // @description  Make your eyes *not* to bleed with new board.
 // @author       Jakub Rychecký <jakub@rychecky.cz>
 // @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?*rapidView=96*
@@ -164,10 +164,10 @@ function jiraBoardFilter() {
         // Browsing all card issues
         $('.ghx-issue').each((i, element) => {
             const issue = $(element);
-            const text = issue.text().toLowerCase();
+            let text = issue.text() + issue.find('.ghx-avatar img').attr('data-tooltip'); // Text issue + jméno assignee
 
 
-            if (text.indexOf(query) !== -1) {
+            if (text.toLowerCase().indexOf(query) !== -1) {
                 issue.show();
                 issue.closest('.ghx-parent-group').find('.ghx-parent-stub').show(); // Show parent for subtask
             } else {
