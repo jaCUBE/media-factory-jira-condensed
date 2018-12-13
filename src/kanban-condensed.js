@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MEDIA FACTORY: JIRA Kanban Board Condensed
 // @namespace    http://jira.mediafactory.cz/
-// @version      1.4
+// @version      2.0
 // @description  Make your eyes *not* to bleed with new board.
 // @author       Jakub Rychecký <jakub@rychecky.cz>
 // @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?*rapidView=96*
@@ -59,7 +59,7 @@ const agingMinimalOpacity = 0.5; // 1.0 = disabled aging at all
 (function () {
     // Header remove for more vertical space
     $('#ghx-header').remove();
-
+    jiraBoardFilter();
 
     $(document).ajaxComplete(() => {
         // Hide columns
@@ -140,3 +140,42 @@ const agingMinimalOpacity = 0.5; // 1.0 = disabled aging at all
         });
     });
 })();
+
+
+
+function jiraBoardFilter() {
+    // Filter input
+    let input = $('<input>').attr('type', 'text').attr('id', 'jira');
+    input.attr('placeholder', 'Filter').css({'margin-top': '5px'});
+
+    // Filtering
+    input.on('keyup', () => {
+        const query = input.val().toLowerCase();
+
+        // Nothing to filter, show all cards as default
+        if (query.length === 0) {
+            $('.ghx-issue, .ghx-parent-stub').show();
+            return;
+        }
+
+        // Hide parent stup for subtasks
+        $('.ghx-parent-stub').hide();
+
+        // Browsing all card issues
+        $('.ghx-issue').each((i, element) => {
+            const issue = $(element);
+            const text = issue.text().toLowerCase();
+
+
+            if (text.indexOf(query) !== -1) {
+                issue.show();
+                issue.closest('.ghx-parent-group').find('.ghx-parent-stub').show(); // Show parent for subtask
+            } else {
+                issue.hide(); // Card doesn't contain query
+            }
+        });
+    });
+
+    // Injecting filter input
+    $('.ghx-controls-work').append(input);
+}
