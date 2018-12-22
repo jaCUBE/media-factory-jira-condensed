@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MEDIA FACTORY: JIRA Kanban Board Condensed
 // @namespace    http://jira.mediafactory.cz/
-// @version      2.1
+// @version      2.2
 // @description  Make your eyes *not* to bleed with new board.
 // @author       Jakub Rychecký <jakub@rychecky.cz>
 // @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?*rapidView=96*
@@ -61,7 +61,11 @@ const agingMinimalOpacity = 0.5; // 1.0 = disabled aging at all
     $('#ghx-header').remove();
     jiraBoardFilter();
 
-    $(document).ajaxComplete(() => {
+    $(document).ajaxComplete((event, xhr, settings) => {
+        if (settings.url.indexOf('allData.json') === -1) {
+            return;
+        }
+
         // Hide columns
         hiddenColumnsIds.forEach((id) => {
             $('.ghx-column[data-id=' + id + '], .ghx-column[data-column-id= ' + id + ']').hide();
@@ -118,7 +122,7 @@ const agingMinimalOpacity = 0.5; // 1.0 = disabled aging at all
             // Avatar: wider card content if no avatar is assigned
             if (issue.find('.ghx-avatar img').length === 0) {
                 issue.find('.ghx-issue-fields').css({
-                   'padding': '0px',
+                    'padding': '0px',
                 });
             } else {
                 issue.find('.ghx-issue-fields').css({
@@ -138,6 +142,8 @@ const agingMinimalOpacity = 0.5; // 1.0 = disabled aging at all
                 });
             }
         });
+
+        jiraLabelColoring();
     });
 })();
 
@@ -185,5 +191,30 @@ function jiraBoardFilter() {
             $('.jira-media-factory').focus();
             e.preventDefault();
         }
+    });
+}
+
+function jiraLabelColoring() {
+    // Defined labels and their hex colors
+    let labelsColors = {
+        'PHP': '#E1D5FF',
+        'JS': '#FEFFD5',
+        'HTML': '#FFEAD5',
+    };
+
+
+    // Each labels field...
+    $('[data-tooltip^=Labels]').each((i, element) => {
+        let labelsElement = $(element);
+        let labels = labelsElement.text();
+
+        labelsElement.attr('data-original', labels); // Store original HTML
+
+        // Loop through each label and set span color for it
+        Object.keys(labelsColors).forEach((key) => {
+            labels = labels.replace(key, '<span style="padding: 4px; background: ' + labelsColors[key] + '">' + key + '</span>');
+        });
+
+        labelsElement.html(labels);
     });
 }
