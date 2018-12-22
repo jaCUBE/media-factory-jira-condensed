@@ -9,6 +9,23 @@ https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldm
 Install script itself via GreasyFork:
 https://greasyfork.org/cs/scripts/375433-media-factory-jira-kanban-board-condensed
 
+## Dev
+
+Install *node_modules* packages:
+```
+npm install
+```
+
+Run Gulp watch and server:
+```
+npx gulp watch
+```
+
+Then you can access result JS through URL:
+```
+http://localhost:8000/dist/kanban-condensed.js
+```
+
 ## Tips
 
 **Board Filtering:**

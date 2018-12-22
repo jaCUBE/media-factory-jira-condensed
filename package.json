@@ -1,0 +1,27 @@
+{
+    "name": "media-factory-jira-condensed",
+    "version": "1.0.0",
+    "description": "A tiny script to make JIRA kanban board better... like... *not* eyes bleeding.",
+    "main": "gulpfile.js",
+    "devDependencies": {
+        "@babel/core": "^7.2.2",
+        "@babel/preset-env": "^7.2.3",
+        "gulp": "^4.0.0",
+        "gulp-babel": "^8.0.0",
+        "gulp-watch": "^5.0.1",
+        "gulp-webserver": "^0.9.1"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jaCUBE/media-factory-jira-condensed.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jaCUBE/media-factory-jira-condensed/issues"
+    },
+    "homepage": "https://github.com/jaCUBE/media-factory-jira-condensed#readme"
+}
