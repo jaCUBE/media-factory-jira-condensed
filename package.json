@@ -1,10 +1,11 @@
 {
     "name": "media-factory-jira-condensed",
-    "version": "1.0.0",
+    "version": "3.0.0",
     "description": "A tiny script to make JIRA kanban board better... like... *not* eyes bleeding.",
     "main": "gulpfile.js",
     "devDependencies": {
         "@babel/core": "^7.2.2",
+        "@babel/plugin-proposal-class-properties": "^7.2.3",
         "@babel/preset-env": "^7.2.3",
         "gulp": "^4.0.0",
         "gulp-babel": "^8.0.0",
