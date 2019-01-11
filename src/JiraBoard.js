@@ -35,7 +35,7 @@ class JiraBoard {
      */
     removeColumnConstraints() {
         $('.ghx-busted-max').removeClass('ghx-busted-max'); // Red background remove
-        $('.ghx-constraint').remove();
+        $('.ghx-constraint').remove(); // Column header remove
     }
 
     /**

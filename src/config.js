@@ -12,7 +12,7 @@ const cssFixVersion = {
 const cssLabels = {
     'font-size': '9px',
     'font-weight': 'bold',
-    'color': '#AAAAAA',
+    'color': '#777777',
 };
 
 const cssEpic = {

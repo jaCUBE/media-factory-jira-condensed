@@ -104,7 +104,7 @@ class JiraIssue {
             });
         } else {
             this.issue.find('.ghx-issue-fields').css({
-                'padding-right': '25px',
+                'padding-right': '30px',
             });
         }
     }

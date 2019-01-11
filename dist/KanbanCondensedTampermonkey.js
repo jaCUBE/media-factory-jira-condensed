@@ -17,7 +17,7 @@ var _cssFixVersion = {
 var _cssLabels = {
   'font-size': '9px',
   'font-weight': 'bold',
-  'color': '#AAAAAA'
+  'color': '#777777'
 };
 var cssEpic = {
   'font-size': '9px'
@@ -97,7 +97,7 @@ function () {
     value: function removeColumnConstraints() {
       $('.ghx-busted-max').removeClass('ghx-busted-max'); // Red background remove
 
-      $('.ghx-constraint').remove();
+      $('.ghx-constraint').remove(); // Column header remove
     }
     /**
      *  Process every issue card at kanban board.
@@ -316,7 +316,7 @@ function () {
         });
       } else {
         this.issue.find('.ghx-issue-fields').css({
-          'padding-right': '25px'
+          'padding-right': '30px'
         });
       }
     }
