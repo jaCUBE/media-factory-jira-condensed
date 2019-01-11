@@ -4,7 +4,7 @@
 // @version      3.0
 // @description  Make your eyes *not* to bleed with new board.
 // @author       Jakub Rychecký <jakub@rychecky.cz>
-// @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?*rapidView=96*
+// @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?*rapidView=*
 // @grant        none
 // ==/UserScript==
 
