@@ -1,9 +1,11 @@
 const gulp = require('gulp');
 const babel = require('gulp-babel');
+const concat = require('gulp-concat');
 const webserver = require('gulp-webserver');
 
 gulp.task('default', () =>
-    gulp.src('src/kanban-condensed.js')
+    gulp.src('src/**/*.js')
+        .pipe(concat('KanbanCondensedTampermonkey.js'))
         .pipe(babel({
             presets: [
                 '@babel/env',
@@ -20,6 +22,6 @@ gulp.task('default', () =>
 
 
 gulp.task('watch', function () {
-    gulp.watch('src/kanban-condensed.js', gulp.series('default'));
+    gulp.watch('src/**/*.js', gulp.series('default'));
     gulp.src('./').pipe(webserver());
 });

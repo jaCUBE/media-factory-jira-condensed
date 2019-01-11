@@ -23,7 +23,7 @@ npx gulp watch
 
 Then you can access result JS through URL:
 ```
-http://localhost:8000/dist/kanban-condensed.js
+http://localhost:8000/dist/KanbanCondensedTampermonkey.js
 ```
 
 ## Tips

@@ -6,53 +6,44 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-// ==UserScript==
-// @name         MEDIA FACTORY: JIRA Kanban Board Condensed
-// @namespace    http://jira.mediafactory.cz/
-// @version      3.0
-// @description  Make your eyes *not* to bleed with new board.
-// @author       Jakub Rychecký <jakub@rychecky.cz>
-// @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?*rapidView=96*
-// @grant        none
-// ==/UserScript==
-const hiddenColumnsIds = [836]; // Acceptance column
+var hiddenColumnsIds = [836]; // Acceptance column
 
-const _cssFixVersion = {
+var _cssFixVersion = {
   'color': '#444444',
   'font-weight': 'bold',
   'font-size': '11px',
   'margin-right': '5px'
 };
-const _cssLabels = {
+var _cssLabels = {
   'font-size': '9px',
   'font-weight': 'bold',
   'color': '#AAAAAA'
 };
-const cssEpic = {
+var cssEpic = {
   'font-size': '9px'
 };
-const cssIssueSummary = {
+var cssIssueSummary = {
   'font-size': '12px'
 };
-const cssIssueContent = {
+var cssIssueContent = {
   'padding': '5px 5px 0px 35px',
   'min-height': '0px'
 };
-const _cssAvatar = {
+var _cssAvatar = {
   'width': '22px',
   'height': '22px'
 }; // General CSS for extra fields as time, labels, epic...
 
-const cssExtraFields = {
+var cssExtraFields = {
   'display': 'inline-flex',
   'margin-top': '5px'
 };
-const labelsColors = {
+var labelsColors = {
   'PHP': '#E1D5FF',
   'JS': '#FEFFD5',
   'HTML': '#FFEAD5'
 };
-const agingMinimalOpacity = 0.5; // 1.0 = disabled aging at all
+var agingMinimalOpacity = 0.5; // 1.0 = disabled aging at all
 
 /**
  *  Basic class for manage JIRA kanban board page.
@@ -120,6 +111,81 @@ function () {
   }]);
 
   return JiraBoard;
+}();
+
+var JiraFilter =
+/*#__PURE__*/
+function () {
+  function JiraFilter() {
+    _classCallCheck(this, JiraFilter);
+
+    this.insertInput();
+    this.bindFilter();
+  }
+
+  _createClass(JiraFilter, [{
+    key: "insertInput",
+    value: function insertInput() {
+      // Filter input
+      this.input = $('<input>').attr('type', 'text').addClass('jira-media-factory');
+      this.input.attr('placeholder', 'Filter (press F)').css({
+        'margin-top': '5px'
+      });
+      $('.ghx-controls-work').append(this.input);
+    }
+  }, {
+    key: "getQuery",
+    value: function getQuery() {
+      return this.input.val().toLowerCase();
+    }
+    /**
+     *
+     */
+
+  }, {
+    key: "bindFilter",
+    value: function bindFilter() {
+      var _this2 = this;
+
+      this.input.on('keyup', function () {
+        var query = _this2.getQuery(); // Nothing to filter, show all cards as default
+
+
+        if (query.length === 0) {
+          $('.ghx-issue, .ghx-parent-stub').show();
+          return;
+        } // Hide parent stup for subtasks
+
+
+        $('.ghx-parent-stub').hide(); // Browsing all card issues
+
+        $('.ghx-issue').each(function (i, element) {
+          _this2.filterIssue(element, query);
+        });
+      });
+    }
+  }, {
+    key: "filterIssue",
+    value: function filterIssue(element, query) {
+      var issue = $(element);
+      var text = this.getIssueText(issue); // Text issue + jméno assignee
+      // Card contains search query in its normalized text
+
+      if (text.toLowerCase().indexOf(query) !== -1) {
+        issue.show();
+        issue.closest('.ghx-parent-group').find('.ghx-parent-stub').show(); // Show parent for subtask
+      } else {
+        issue.hide(); // Card doesn't contain query
+      }
+    }
+  }, {
+    key: "getIssueText",
+    value: function getIssueText(issue) {
+      return issue.text() + issue.find('.ghx-avatar img').attr('data-tooltip');
+    }
+  }]);
+
+  return JiraFilter;
 }();
 /**
  * Instance of every issue card at kanban board page.
@@ -270,85 +336,15 @@ function () {
   }]);
 
   return JiraIssue;
-}();
-
-var JiraFilter =
-/*#__PURE__*/
-function () {
-  function JiraFilter() {
-    _classCallCheck(this, JiraFilter);
-
-    this.insertInput();
-    this.bindFilter();
-  }
-
-  _createClass(JiraFilter, [{
-    key: "insertInput",
-    value: function insertInput() {
-      // Filter input
-      this.input = $('<input>').attr('type', 'text').addClass('jira-media-factory');
-      this.input.attr('placeholder', 'Filter (press F)').css({
-        'margin-top': '5px'
-      });
-      $('.ghx-controls-work').append(this.input);
-    }
-  }, {
-    key: "getQuery",
-    value: function getQuery() {
-      return this.input.val().toLowerCase();
-    }
-    /**
-     *
-     */
-
-  }, {
-    key: "bindFilter",
-    value: function bindFilter() {
-      var _this2 = this;
-
-      this.input.on('keyup', function () {
-        var query = _this2.getQuery(); // Nothing to filter, show all cards as default
-
-
-        if (query.length === 0) {
-          $('.ghx-issue, .ghx-parent-stub').show();
-          return;
-        } // Hide parent stup for subtasks
-
-
-        $('.ghx-parent-stub').hide(); // Browsing all card issues
-
-        $('.ghx-issue').each(function (i, element) {
-          _this2.filterIssue(element, query);
-        });
-      });
-    }
-  }, {
-    key: "filterIssue",
-    value: function filterIssue(element, query) {
-      var issue = $(element);
-      var text = this.getIssueText(issue); // Text issue + jméno assignee
-      // Card contains search query in its normalized text
-
-      if (text.toLowerCase().indexOf(query) !== -1) {
-        issue.show();
-        issue.closest('.ghx-parent-group').find('.ghx-parent-stub').show(); // Show parent for subtask
-      } else {
-        issue.hide(); // Card doesn't contain query
-      }
-    }
-  }, {
-    key: "getIssueText",
-    value: function getIssueText(issue) {
-      return issue.text() + issue.find('.ghx-avatar img').attr('data-tooltip');
-    }
-  }]);
-
-  return JiraFilter;
-}();
-/**
- *
- */
+}(); // ==UserScript==
+// @name         MEDIA FACTORY: JIRA Kanban Board Condensed
+// @namespace    http://jira.mediafactory.cz/
+// @version      3.0
+// @description  Make your eyes *not* to bleed with new board.
+// @author       Jakub Rychecký <jakub@rychecky.cz>
+// @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?*rapidView=96*
+// @grant        none
+// ==/UserScript==
 
 
 $(function () {
