@@ -39,7 +39,8 @@ var cssExtraFields = {
 var labelsColors = {
   'PHP': '#E1D5FF',
   'JS': '#FEFFD5',
-  'HTML': '#FFEAD5'
+  'HTML': '#FFEAD5',
+  'CSS': '#D5EAFF'
 }; // My issue highlight styles
 
 var myIssueHighlight = {
