@@ -6,8 +6,6 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var hiddenColumnsIds = [836]; // Acceptance column
-
 var _cssFixVersion = {
   'color': '#444444',
   'font-weight': 'bold',
@@ -114,17 +112,6 @@ function () {
     value: function processIssues() {
       $('.ghx-issue').each(function (i, element) {
         new JiraIssue(element); // Every card is JiraIssue instance
-      });
-    }
-    /**
-     * Hide columns like "acceptance" which are useless for devs.
-     */
-
-  }, {
-    key: "hideColumns",
-    value: function hideColumns() {
-      hiddenColumnsIds.forEach(function (id) {
-        $('.ghx-column[data-id=' + id + '], .ghx-column[data-column-id= ' + id + ']').hide();
       });
     }
   }]);

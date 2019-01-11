@@ -1,6 +1,3 @@
-
-const hiddenColumnsIds = [836]; // Acceptance column
-
 const cssFixVersion = {
     'color': '#444444',
     'font-weight': 'bold',

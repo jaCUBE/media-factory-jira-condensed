@@ -46,13 +46,4 @@ class JiraBoard {
             (new JiraIssue(element)); // Every card is JiraIssue instance
         });
     }
-
-    /**
-     * Hide columns like "acceptance" which are useless for devs.
-     */
-    hideColumns() {
-        hiddenColumnsIds.forEach((id) => {
-            $('.ghx-column[data-id=' + id + '], .ghx-column[data-column-id= ' + id + ']').hide();
-        });
-    }
 }
