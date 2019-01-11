@@ -75,6 +75,8 @@ function () {
       $(document).ajaxComplete(function (event, xhr, settings) {
         // TODO: This might use some optimization not to call every request (settings.url?)
         _this.processIssues();
+
+        _this.removeColumnConstraints();
       });
     }
     /**
@@ -85,6 +87,17 @@ function () {
     key: "removeHeader",
     value: function removeHeader() {
       $('#ghx-header').remove();
+    }
+    /**
+     * Remove column card count constraints.
+     */
+
+  }, {
+    key: "removeColumnConstraints",
+    value: function removeColumnConstraints() {
+      $('.ghx-busted-max').removeClass('ghx-busted-max'); // Red background remove
+
+      $('.ghx-constraint').remove();
     }
     /**
      *  Process every issue card at kanban board.
