@@ -24,7 +24,7 @@ const cssIssueSummary = {
 };
 
 const cssIssueContent = {
-    'padding': '5px 5px 0px 35px',
+    'padding': '5px 5px 0px 27px',
     'min-height': '0px',
 };
 
@@ -44,6 +44,13 @@ const labelsColors = {
     'PHP': '#E1D5FF',
     'JS': '#FEFFD5',
     'HTML': '#FFEAD5',
+};
+
+// My issue highlight styles
+const myIssueHighlight = {
+    'background': '#EFF2FF',
+    'border-left': '4px solid #99ACF7',
+    'border-right': '4px solid #99ACF7',
 };
 
 

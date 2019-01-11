@@ -26,7 +26,7 @@ var cssIssueSummary = {
   'font-size': '12px'
 };
 var cssIssueContent = {
-  'padding': '5px 5px 0px 35px',
+  'padding': '5px 5px 0px 27px',
   'min-height': '0px'
 };
 var _cssAvatar = {
@@ -42,6 +42,12 @@ var labelsColors = {
   'PHP': '#E1D5FF',
   'JS': '#FEFFD5',
   'HTML': '#FFEAD5'
+}; // My issue highlight styles
+
+var myIssueHighlight = {
+  'background': '#EFF2FF',
+  'border-left': '4px solid #99ACF7',
+  'border-right': '4px solid #99ACF7'
 };
 var agingMinimalOpacity = 0.5; // 1.0 = disabled aging at all
 
@@ -229,6 +235,7 @@ function () {
 
     this.aging();
     this.colorLabels();
+    this.highlightMyTask();
   }
   /**
    * Remove "None" rows of card.
@@ -261,6 +268,10 @@ function () {
       this.issue.find('.aui-label[data-epickey]').css(cssEpic); // Epic label style
 
       this.issue.find('.ghx-highlighted-fields, .ghx-extra-fields').css(cssExtraFields);
+      this.issue.find('.ghx-type, .ghx-flags').css({
+        // Move flags
+        'left': '5px'
+      });
     }
   }, {
     key: "cssLabels",
@@ -346,6 +357,16 @@ function () {
         });
       }
     }
+  }, {
+    key: "highlightMyTask",
+    value: function highlightMyTask() {
+      var logged = $('#header-details-user-fullname').attr('data-displayname');
+      var assignee = this.issue.find('.ghx-avatar-img').attr('data-tooltip');
+
+      if (typeof assignee !== 'undefined' && assignee.indexOf(logged) !== -1) {
+        this.issue.css(myIssueHighlight);
+      }
+    }
   }]);
 
   return JiraIssue;
@@ -355,7 +376,7 @@ function () {
 // @version      3.0
 // @description  Make your eyes *not* to bleed with new board.
 // @author       Jakub Rychecký <jakub@rychecky.cz>
-// @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?*rapidView=96*
+// @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?*rapidView=*
 // @grant        none
 // ==/UserScript==
 

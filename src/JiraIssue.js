@@ -24,6 +24,7 @@ class JiraIssue {
         // New features
         this.aging();
         this.colorLabels();
+        this.highlightMyTask();
     }
 
     /**
@@ -48,6 +49,10 @@ class JiraIssue {
         this.issue.find('.ghx-summary').css(cssIssueSummary); // Issue text
         this.issue.find('.aui-label[data-epickey]').css(cssEpic); // Epic label style
         this.issue.find('.ghx-highlighted-fields, .ghx-extra-fields').css(cssExtraFields);
+
+        this.issue.find('.ghx-type, .ghx-flags').css({ // Move flags
+            'left': '5px',
+        });
     }
 
 
@@ -128,6 +133,15 @@ class JiraIssue {
             this.issue.css({
                 'opacity': opacity <= agingMinimalOpacity ? agingMinimalOpacity : opacity,
             });
+        }
+    }
+
+    highlightMyTask() {
+        let logged = $('#header-details-user-fullname').attr('data-displayname');
+        let assignee = this.issue.find('.ghx-avatar-img').attr('data-tooltip');
+
+        if (typeof assignee !== 'undefined' && assignee.indexOf(logged) !== -1) {
+            this.issue.css(myIssueHighlight);
         }
     }
 }
