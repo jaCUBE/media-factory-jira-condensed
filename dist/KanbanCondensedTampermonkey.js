@@ -218,7 +218,7 @@ function () {
     this.issue = $(issue); // Remove useless parts of card
 
     this.removeNoneRows();
-    this.removeDays();
+    this.hideDays();
     this.removeProgress();
     this.removeNormalPriority(); // CSS tweaks (font-size, padding...)
 
@@ -321,9 +321,9 @@ function () {
       }
     }
   }, {
-    key: "removeDays",
-    value: function removeDays() {
-      this.issue.find('.ghx-days').remove();
+    key: "hideDays",
+    value: function hideDays() {
+      this.issue.find('.ghx-days').hide();
     }
   }, {
     key: "removeProgress",

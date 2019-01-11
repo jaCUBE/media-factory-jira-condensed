@@ -11,7 +11,7 @@ class JiraIssue {
 
         // Remove useless parts of card
         this.removeNoneRows();
-        this.removeDays();
+        this.hideDays();
         this.removeProgress();
         this.removeNormalPriority();
 
@@ -109,8 +109,8 @@ class JiraIssue {
         }
     }
 
-    removeDays() {
-        this.issue.find('.ghx-days').remove();
+    hideDays() {
+        this.issue.find('.ghx-days').hide();
     }
 
     removeProgress() {
