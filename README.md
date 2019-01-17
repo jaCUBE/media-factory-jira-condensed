@@ -37,3 +37,18 @@ Wanna contribute? Great!
     ```
     http://localhost:8000/dist/KanbanCondensedTampermonkey.js
     ```
+
+5. Create new Tampermonkey script for dev purposes (load JS file from localhost).
+    Disable original one.
+    ```
+    // ==UserScript==
+    // @name         [DEV] MEDIA FACTORY: JIRA Kanban Board Condensed
+    // @namespace    http://jira.mediafactory.cz/
+    // @description  DEVELOPER VERSION. Make your eyes *not* to bleed with new board.
+    // @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?*rapidView=*
+    // ==/UserScript==
+
+    $('<script>')
+        .attr('src', 'http://localhost:8000/dist/KanbanCondensedTampermonkey.js')
+        .appendTo('<head>');
+    ```

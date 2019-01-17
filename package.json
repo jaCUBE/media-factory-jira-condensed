@@ -1,6 +1,6 @@
 {
     "name": "media-factory-jira-condensed",
-    "version": "3.0.0",
+    "version": "3.1.0",
     "description": "A tiny script to make JIRA kanban board better... like... *not* eyes bleeding.",
     "main": "gulpfile.js",
     "devDependencies": {
