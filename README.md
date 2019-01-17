@@ -2,31 +2,38 @@
 
 A tiny script to make JIRA kanban board better... like... *not* eyes bleeding.
 
-## Installation
-Install Tampermonkey extension for Google Chrome:
-https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en
+------------------------------------------------------------------------------
 
-Install script itself via GreasyFork:
-https://greasyfork.org/cs/scripts/375433-media-factory-jira-kanban-board-condensed
+## User Installation
+1. Install Tampermonkey extension for your browser:
+    - [Tampermonkey for Google Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)
+    - [Tampermonkey for Mozilla Firefox](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)
 
-## Dev
+2. Install Javascript via Greasy Fork:
+    - [**Media Factory Kanban JIRA Condensed at greasyfork.org**](https://greasyfork.org/cs/scripts/375433-media-factory-jira-kanban-board-condensed)
 
-Install *node_modules* packages:
-```
-npm install
-```
+------
 
-Run Gulp watch and server:
-```
-npx gulp watch
-```
+## Developer Installation
 
-Then you can access result JS through URL:
-```
-http://localhost:8000/dist/KanbanCondensedTampermonkey.js
-```
+Wanna contribute? Great!
 
-## Tips
+1. Clone this repository:
+    ```
+    git clone https://github.com/jaCUBE/media-factory-jira-condensed.git
+    ```
 
-**Board Filtering:**
-- Press `F` to fast focus filter input
+2. Install `node_modules` packages:
+    ```
+    npm i
+    ```
+
+3. Run Gulp watch and server, it will minify your JS and serve the file:
+    ```
+    npx gulp watch
+    ```
+
+4. Then you can access result JS through URL:
+    ```
+    http://localhost:8000/dist/KanbanCondensedTampermonkey.js
+    ```
