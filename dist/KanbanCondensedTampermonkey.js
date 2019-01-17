@@ -65,6 +65,7 @@ function () {
 
     this.bind();
     this.removeHeader();
+    this.initKeyboardShortcut();
     this.filter = new JiraFilter();
   }
   /**
@@ -113,6 +114,22 @@ function () {
     value: function processIssues() {
       $('.ghx-issue').each(function (i, element) {
         new JiraIssue(element); // Every card is JiraIssue instance
+      });
+    }
+    /**
+     * Press "F" to focus filter.
+     */
+
+  }, {
+    key: "initKeyboardShortcut",
+    value: function initKeyboardShortcut() {
+      $(document).on('keydown', function (e) {
+        var tag = e.target.tagName.toLowerCase();
+
+        if (e.which === 70 && tag !== 'input' && tag !== 'textarea') {
+          e.preventDefault();
+          $('.jira-media-factory').focus();
+        }
       });
     }
   }]);
@@ -361,7 +378,7 @@ function () {
 }(); // ==UserScript==
 // @name         MEDIA FACTORY: JIRA Kanban Board Condensed
 // @namespace    http://jira.mediafactory.cz/
-// @version      3.0
+// @version      3.2.0
 // @description  Make your eyes *not* to bleed with new board.
 // @author       Jakub Rychecký <jakub@rychecky.cz>
 // @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?*rapidView=*

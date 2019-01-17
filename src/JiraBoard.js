@@ -8,6 +8,7 @@ class JiraBoard {
     constructor() {
         this.bind();
         this.removeHeader();
+        this.initKeyboardShortcut();
 
         this.filter = new JiraFilter();
     }
@@ -44,6 +45,20 @@ class JiraBoard {
     processIssues() {
         $('.ghx-issue').each((i, element) => {
             (new JiraIssue(element)); // Every card is JiraIssue instance
+        });
+    }
+
+    /**
+     * Press "F" to focus filter.
+     */
+    initKeyboardShortcut() {
+        $(document).on('keydown', function(e) {
+            var tag = e.target.tagName.toLowerCase();
+
+            if (e.which === 70 && tag !== 'input' && tag !== 'textarea') {
+                e.preventDefault();
+                $('.jira-media-factory').focus();
+            }
         });
     }
 }
