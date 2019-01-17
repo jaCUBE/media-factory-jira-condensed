@@ -7,7 +7,7 @@ A tiny script to make JIRA kanban board better... like... *not* eyes bleeding.
 ## User Installation
 1. Install Tampermonkey extension for your browser:
     - [Tampermonkey for Google Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)
-    - [Tampermonkey for Mozilla Firefox](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en)
+    - [Tampermonkey for Mozilla Firefox](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
 
 2. Install Javascript via Greasy Fork:
     - [**Media Factory Kanban JIRA Condensed at greasyfork.org**](https://greasyfork.org/cs/scripts/375433-media-factory-jira-kanban-board-condensed)
