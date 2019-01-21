@@ -63,6 +63,7 @@ function () {
   function JiraBoard() {
     _classCallCheck(this, JiraBoard);
 
+    this.init();
     this.bind();
     this.removeHeader();
     this.initKeyboardShortcut();
@@ -78,12 +79,16 @@ function () {
     value: function bind() {
       var _this = this;
 
-      $(document).ajaxComplete(function (event, xhr, settings) {
-        // TODO: This might use some optimization not to call every request (settings.url?)
-        _this.processIssues();
-
-        _this.removeColumnConstraints();
+      // TODO: This might use some optimization not to call every request (settings.url?)
+      $(document).ajaxComplete(function () {
+        return _this.init();
       });
+    }
+  }, {
+    key: "init",
+    value: function init() {
+      this.processIssues();
+      this.removeColumnConstraints();
     }
     /**
      *  Remove board header.

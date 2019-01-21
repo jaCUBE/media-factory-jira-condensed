@@ -6,6 +6,7 @@ class JiraBoard {
      *  Constructor does AJAX even binding and basic stuff.
      */
     constructor() {
+        this.init();
         this.bind();
         this.removeHeader();
         this.initKeyboardShortcut();
@@ -17,11 +18,13 @@ class JiraBoard {
      *  Bind board processing on AJAX request.
      */
     bind() {
-        $(document).ajaxComplete((event, xhr, settings) => {
-            // TODO: This might use some optimization not to call every request (settings.url?)
-            this.processIssues();
-            this.removeColumnConstraints();
-        });
+        // TODO: This might use some optimization not to call every request (settings.url?)
+        $(document).ajaxComplete(() => this.init());
+    }
+
+    init() {
+        this.processIssues();
+        this.removeColumnConstraints();
     }
 
     /**
