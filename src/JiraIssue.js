@@ -1,9 +1,13 @@
+import {CONFIG} from './config';
+
 /**
  * Instance of every issue card at kanban board page.
  */
 class JiraIssue {
+
     /**
      * Constructor runs all necessary processing for issue card.
+     *
      * @param {HTMLElement} issue Issue card in DOM
      */
     constructor(issue) {
@@ -45,20 +49,19 @@ class JiraIssue {
      * Do basic CSS card tweaks.
      */
     cssIssue() {
-        this.issue.find('.ghx-issue-content').css(cssIssueContent); // General issue style
-        this.issue.find('.ghx-summary').css(cssIssueSummary); // Issue text
-        this.issue.find('.aui-label[data-epickey]').css(cssEpic); // Epic label style
-        this.issue.find('.ghx-highlighted-fields, .ghx-extra-fields').css(cssExtraFields);
+        this.issue.find('.ghx-issue-content').css(CONFIG.cssIssueContent); // General issue style
+        this.issue.find('.ghx-summary').css(CONFIG.cssIssueSummary); // Issue text
+        this.issue.find('.aui-label[data-epickey]').css(CONFIG.cssEpic); // Epic label style
+        this.issue.find('.ghx-highlighted-fields, .ghx-extra-fields').css(CONFIG.cssExtraFields);
 
         this.issue.find('.ghx-type, .ghx-flags').css({ // Move flags
             'left': '5px',
         });
     }
 
-
     cssLabels() {
         // Labels: style
-        this.issue.find('[data-tooltip^="Labels"]').css(cssLabels);
+        this.issue.find('[data-tooltip^="Labels"]').css(CONFIG.cssLabels);
 
         // Labels: normalize letter case
         this.issue.find('[data-tooltip^="Labels"]').each((x, elementRow) => {
@@ -72,13 +75,12 @@ class JiraIssue {
      */
     cssFixVersion() {
         this.issue.find('[data-tooltip^="Fix"]').each((x, elementRow) => {
-            $(elementRow).css(cssFixVersion);
+            $(elementRow).css(CONFIG.cssFixVersion);
         });
     }
 
-
     /**
-     *
+     * Color issue labels.
      */
     colorLabels() {
         // Each labels field...
@@ -89,18 +91,20 @@ class JiraIssue {
             labelsElement.attr('data-original', labels); // Store original HTML
 
             // Loop through each label and set span color for it
-            Object.keys(labelsColors).forEach((key) => {
-                labels = labels.replace(key, '<span style="padding: 4px; background: ' + labelsColors[key] + '">' + key + '</span>');
-            });
+            for (let [key, value] of Object.entries(CONFIG.labelsColors)) {
+                labels = labels.replace(key, '<span style="padding: 4px; background: ' + value + '">' + key + '</span>');
+            }
 
             labelsElement.html(labels);
         });
     }
 
-
+    /**
+     * Change avatar style
+     */
     cssAvatar() {
         // Avatar: default avatar size
-        this.issue.find('.ghx-avatar img').css(cssAvatar);
+        this.issue.find('.ghx-avatar img').css(CONFIG.cssAvatar);
 
         // Avatar: wider card content if no avatar is assigned
         if (this.issue.find('.ghx-avatar img').length === 0) {
@@ -114,19 +118,32 @@ class JiraIssue {
         }
     }
 
+    /**
+     * Hide days indicator.
+     */
     hideDays() {
         this.issue.find('.ghx-days').hide();
     }
 
+    /**
+     * Removed planned and logged time progress.
+     */
     removeProgress() {
         this.issue.find('[data-tooltip*="Progress"]').remove(); // Time: remove logged time from card
     }
 
+    /**
+     * Remove normal priority indicator.
+     */
     removeNormalPriority() {
         this.issue.find('.ghx-priority[title=Normal').remove();
     }
 
+    /**
+     * Change opacity for old issues.
+     */
     aging() {
+        const agingMinimalOpacity = CONFIG.agingMinimalOpacity;
         if (agingMinimalOpacity < 1.0) {
             let age = parseInt(this.issue.find('.ghx-days').attr('title'));
             let opacity = 1 - (age / 100 * 2);
@@ -136,12 +153,17 @@ class JiraIssue {
         }
     }
 
+    /**
+     * Highlight current user's issues.
+     */
     highlightMyTask() {
         let logged = $('#header-details-user-fullname').attr('data-displayname');
         let assignee = this.issue.find('.ghx-avatar-img').attr('data-tooltip');
 
         if (typeof assignee !== 'undefined' && assignee.indexOf(logged) !== -1) {
-            this.issue.css(myIssueHighlight);
+            this.issue.css(CONFIG.myIssueHighlight);
         }
     }
 }
+
+export default JiraIssue;

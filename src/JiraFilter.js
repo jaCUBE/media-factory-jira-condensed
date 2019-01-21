@@ -1,10 +1,16 @@
 class JiraFilter {
+
+    /**
+     * JiraFilter constructor.
+     */
     constructor() {
         this.insertInput();
         this.bindFilter();
     }
 
-
+    /**
+     * Create filter element.
+     */
     insertInput() {
         // Filter input
         this.input = $('<input>').attr('type', 'text').addClass('jira-media-factory');
@@ -12,12 +18,17 @@ class JiraFilter {
         $('.ghx-controls-work').append(this.input);
     }
 
+    /**
+     * Get the input query.
+     *
+     * @returns {string}
+     */
     getQuery() {
         return this.input.val().toLowerCase();
     }
 
     /**
-     *
+     * Bind events for filter.
      */
     bindFilter() {
         this.input.on('keyup', () => {
@@ -39,9 +50,15 @@ class JiraFilter {
         });
     }
 
+    /**
+     * Apply current filter.
+     *
+     * @param element
+     * @param query
+     */
     filterIssue(element, query) {
         let issue = $(element);
-        let text = this.getIssueText(issue); // Text issue + jméno assignee
+        let text = JiraFilter.getIssueText(issue); // Text issue + jméno assignee
 
         // Card contains search query in its normalized text
         if (text.toLowerCase().indexOf(query) !== -1) {
@@ -52,8 +69,16 @@ class JiraFilter {
         }
     }
 
-
-    getIssueText(issue) {
+    /**
+     * Get text from issue.
+     *
+     * @param issue
+     *
+     * @returns {string}
+     */
+    static getIssueText(issue) {
         return issue.text() + issue.find('.ghx-avatar img').attr('data-tooltip');
     }
 }
+
+export default JiraFilter;
