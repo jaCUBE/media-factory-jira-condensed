@@ -65,3 +65,5 @@ class JiraBoard {
         });
     }
 }
+
+export default JiraBoard;

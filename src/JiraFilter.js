@@ -57,3 +57,5 @@ class JiraFilter {
         return issue.text() + issue.find('.ghx-avatar img').attr('data-tooltip');
     }
 }
+
+export default JiraFilter;
