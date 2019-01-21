@@ -1,25 +1,19 @@
+const fs = require('fs');
+
 const gulp = require('gulp');
-const babel = require('gulp-babel');
-const concat = require('gulp-concat');
+const header = require('gulp-header');
 const webserver = require('gulp-webserver');
 
-gulp.task('default', () =>
-    gulp.src('src/**/*.js')
-        .pipe(concat('KanbanCondensedTampermonkey.js'))
-        .pipe(babel({
-            presets: [
-                '@babel/env',
-                {
-                    plugins: [
-                        '@babel/plugin-proposal-class-properties'
-                    ]
-                }
-            ]
-        }))
-        .pipe(gulp.dest('dist'))
-);
+const webpack = require('webpack');
+const webpackStream = require('webpack-stream');
+const webpackConfig = require('./webpack.config');
 
-
+gulp.task('default', () => {
+    return gulp.src('./src/index.js')
+        .pipe(webpackStream(webpackConfig, webpack))
+        .pipe(header(fs.readFileSync('./header.txt', 'utf8') + '\n'))
+        .pipe(gulp.dest('dist'));
+});
 
 gulp.task('watch', function () {
     gulp.watch('src/**/*.js', gulp.series('default'));

@@ -1,9 +1,13 @@
+import JiraFilter from './JiraFilter';
+import JiraIssue from './JiraIssue';
+
 /**
  *  Basic class for manage JIRA kanban board page.
  */
 class JiraBoard {
+
     /**
-     *  Constructor does AJAX even binding and basic stuff.
+     * Constructor does AJAX even binding and basic stuff.
      */
     constructor() {
         this.init();
@@ -15,20 +19,23 @@ class JiraBoard {
     }
 
     /**
-     *  Bind board processing on AJAX request.
+     * Initialize
      */
-    bind() {
-        // TODO: This might use some optimization not to call every request (settings.url?)
-        $(document).ajaxComplete(() => this.init());
-    }
-
     init() {
         this.processIssues();
         this.removeColumnConstraints();
     }
 
     /**
-     *  Remove board header.
+     * Bind board processing on AJAX request.
+     */
+    bind() {
+        // TODO: This might use some optimization not to call every request (settings.url?)
+        $(document).ajaxComplete(() => this.init());
+    }
+
+    /**
+     * Remove board header.
      */
     removeHeader() {
         $('#ghx-header').remove();
@@ -43,7 +50,7 @@ class JiraBoard {
     }
 
     /**
-     *  Process every issue card at kanban board.
+     * Process every issue card at kanban board.
      */
     processIssues() {
         $('.ghx-issue').each((i, element) => {
@@ -55,7 +62,7 @@ class JiraBoard {
      * Press "F" to focus filter.
      */
     initKeyboardShortcut() {
-        $(document).on('keydown', function(e) {
+        $(document).on('keydown', function (e) {
             var tag = e.target.tagName.toLowerCase();
 
             if (e.which === 70 && tag !== 'input' && tag !== 'textarea') {

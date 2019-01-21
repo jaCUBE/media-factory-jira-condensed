@@ -4,8 +4,10 @@ import {CONFIG} from './config';
  * Instance of every issue card at kanban board page.
  */
 class JiraIssue {
+
     /**
      * Constructor runs all necessary processing for issue card.
+     *
      * @param {HTMLElement} issue Issue card in DOM
      */
     constructor(issue) {
@@ -57,7 +59,6 @@ class JiraIssue {
         });
     }
 
-
     cssLabels() {
         // Labels: style
         this.issue.find('[data-tooltip^="Labels"]').css(CONFIG.cssLabels);
@@ -78,9 +79,8 @@ class JiraIssue {
         });
     }
 
-
     /**
-     *
+     * Color issue labels.
      */
     colorLabels() {
         // Each labels field...
@@ -91,16 +91,17 @@ class JiraIssue {
             labelsElement.attr('data-original', labels); // Store original HTML
 
             // Loop through each label and set span color for it
-            const labelsColors = CONFIG.labelsColors;
-            Object.keys(labelsColors).forEach((key) => {
-                labels = labels.replace(key, '<span style="padding: 4px; background: ' + labelsColors[key] + '">' + key + '</span>');
-            });
+            for (let [key, value] of Object.entries(CONFIG.labelsColors)) {
+                labels = labels.replace(key, '<span style="padding: 4px; background: ' + value + '">' + key + '</span>');
+            }
 
             labelsElement.html(labels);
         });
     }
 
-
+    /**
+     * Change avatar style
+     */
     cssAvatar() {
         // Avatar: default avatar size
         this.issue.find('.ghx-avatar img').css(CONFIG.cssAvatar);
@@ -117,18 +118,30 @@ class JiraIssue {
         }
     }
 
+    /**
+     * Hide days indicator.
+     */
     hideDays() {
         this.issue.find('.ghx-days').hide();
     }
 
+    /**
+     * Removed planned and logged time progress.
+     */
     removeProgress() {
         this.issue.find('[data-tooltip*="Progress"]').remove(); // Time: remove logged time from card
     }
 
+    /**
+     * Remove normal priority indicator.
+     */
     removeNormalPriority() {
         this.issue.find('.ghx-priority[title=Normal').remove();
     }
 
+    /**
+     * Change opacity for old issues.
+     */
     aging() {
         const agingMinimalOpacity = CONFIG.agingMinimalOpacity;
         if (agingMinimalOpacity < 1.0) {
@@ -140,6 +153,9 @@ class JiraIssue {
         }
     }
 
+    /**
+     * Highlight current user's issues.
+     */
     highlightMyTask() {
         let logged = $('#header-details-user-fullname').attr('data-displayname');
         let assignee = this.issue.find('.ghx-avatar-img').attr('data-tooltip');
