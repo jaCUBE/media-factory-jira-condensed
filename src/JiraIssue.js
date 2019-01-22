@@ -87,8 +87,7 @@ class JiraIssue {
         this.issue.find('[data-tooltip^=Labels]').each((i, element) => {
             let labelsElement = $(element);
             let labels = labelsElement.text();
-
-            labelsElement.attr('data-original', labels); // Store original HTML
+            labels = labels.replace(',', ''); // Remove comma separator for labels
 
             // Loop through each label and set span color for it
             for (let [key, value] of Object.entries(CONFIG.labelsColors)) {

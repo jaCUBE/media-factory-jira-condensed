@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name
+// @name         MEDIA FACTORY: JIRA Kanban Board Condensed
 // @namespace    http://jira.mediafactory.cz/
 // @version      <%= pkg.version %>
 // @license      <%= pkg.license %>
