@@ -15,7 +15,11 @@ gulp.task('default', () => {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('watch', function () {
-    gulp.watch('src/**/*.js', gulp.series('default'));
+gulp.task('watch', function() {
+    gulp.watch([
+        'src/**/*.js',
+        'package.json',
+        'header.txt'
+    ], gulp.series('default'));
     gulp.src('./').pipe(webserver());
 });
