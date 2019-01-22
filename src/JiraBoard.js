@@ -45,7 +45,7 @@ class JiraBoard {
      * Remove column card count constraints.
      */
     removeColumnConstraints() {
-        $('.ghx-busted-max').removeClass('ghx-busted-max'); // Red background remove
+        $('.ghx-busted-max, .ghx-busted-min').removeClass('ghx-busted-min ghx-busted-max'); // Red/yellow background remove
         $('.ghx-constraint').remove(); // Column header remove
     }
 
