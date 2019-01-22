@@ -26,8 +26,19 @@
         "type": "git",
         "url": "git+https://github.com/jaCUBE/media-factory-jira-condensed.git"
     },
-    "author": "",
-    "license": "ISC",
+    "author": {
+        "name": "Jakub Rýchecký",
+        "email": "jakub@rychecky.cz",
+        "url": "http://rychecky.cz/"
+    },
+    "contributors": [
+        {
+            "name": "Michal Junek",
+            "email": "dragonczz@gmail.com",
+            "url": ""
+        }
+    ],
+    "license": "WTFPL",
     "bugs": {
         "url": "https://github.com/jaCUBE/media-factory-jira-condensed/issues"
     },

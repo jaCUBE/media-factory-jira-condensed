@@ -1,9 +1,11 @@
 // ==UserScript==
-// @name         MEDIA FACTORY: JIRA Kanban Board Condensed
+// @name
 // @namespace    http://jira.mediafactory.cz/
-// @version      4.0.0
-// @description  Make your eyes *not* to bleed with new board.
-// @author       Jakub Rychecký <jakub@rychecky.cz>
+// @version      3.2.0
+// @license      WTFPL
+// @description  A tiny script to make JIRA kanban board better... like... *not* eyes bleeding.
+// @author       Jakub Rýchecký <jakub@rychecky.cz> (http://rychecky.cz/)
+// @contributor  Michal Junek <dragonczz@gmail.com> ()
 // @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?*rapidView=*
 // @require      https://openuserjs.org/src/libs/sizzle/GM_config.js
 // @grant        none
