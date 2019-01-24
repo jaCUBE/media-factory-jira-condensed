@@ -1,4 +1,4 @@
-import {CONFIG} from './config';
+import CONFIG from './UserConfig';
 
 /**
  * Instance of every issue card at kanban board page.

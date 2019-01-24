@@ -8,5 +8,6 @@
 <%= contributors %>
 // @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?*rapidView=*
 // @require      https://openuserjs.org/src/libs/sizzle/GM_config.js
-// @grant        none
+// @grant        GM_setValue
+// @grant        GM_getValue
 // ==/UserScript==

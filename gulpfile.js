@@ -2,6 +2,7 @@ const fs = require('fs');
 
 const gulp = require('gulp');
 const header = require('gulp-header');
+const concat = require('gulp-concat');
 const webserver = require('gulp-webserver');
 
 const webpack = require('webpack');
@@ -29,11 +30,15 @@ gulp.task('default', () => {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('watch', function() {
+gulp.task('dist', () => {
+
+});
+
+gulp.task('watch', function () {
     gulp.watch([
         'src/**/*.js',
         'package.json',
-        'header.txt'
+        'header.txt',
     ], gulp.series('default'));
     gulp.src('./').pipe(webserver());
 });

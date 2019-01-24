@@ -1,6 +1,6 @@
 const path = require('path');
 
-module.exports = {
+const config = {
     mode: 'development',
     entry: path.resolve(__dirname, 'src'),
     output: {
@@ -24,4 +24,7 @@ module.exports = {
             },
         ],
     },
+    plugins: [],
 };
+
+module.exports = config;

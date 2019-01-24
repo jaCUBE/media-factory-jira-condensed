@@ -1,5 +1,6 @@
 import JiraFilter from './JiraFilter';
 import JiraIssue from './JiraIssue';
+import CONFIG from './UserConfig';
 
 /**
  *  Basic class for manage JIRA kanban board page.
@@ -16,6 +17,7 @@ class JiraBoard {
         this.initKeyboardShortcut();
 
         this.filter = new JiraFilter();
+        CONFIG.open();
     }
 
     /**
