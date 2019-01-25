@@ -33,22 +33,23 @@ Wanna contribute? Great!
     npx gulp watch
     ```
 
-4. Then you can access result JS through URL:
-    ```
-    http://localhost:8000/dist/KanbanCondensedTampermonkey.js
-    ```
+4. Allow Tampermonkey extension to access local files.
+    - Visit Chrome extension settings page at: chrome://extensions/
+    - Find Tampermonkey, click to `Details`
+    - Turn `Allow access to file URLs` checkbox on
 
 5. Create new Tampermonkey script for dev purposes (load JS file from localhost).
     Disable original one.
+
+    - Make sure you put your own correct filepath into require `// @require`
+
     ```
     // ==UserScript==
     // @name         [DEV] MEDIA FACTORY: JIRA Kanban Board Condensed
     // @namespace    http://jira.mediafactory.cz/
     // @description  DEVELOPER VERSION. Make your eyes *not* to bleed with new board.
     // @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?*rapidView=*
+    // @require      file:///C:/dev/media-factory-jira-condensed/dist/KanbanCondensedTampermonkey.js
     // ==/UserScript==
-
-    $('<script>')
-        .attr('src', 'http://localhost:8000/dist/KanbanCondensedTampermonkey.js')
-        .appendTo('<head>');
     ```
+6. Easily switch between production version linked to GreasyFork and your local file
