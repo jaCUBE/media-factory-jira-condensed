@@ -3,7 +3,6 @@ const fs = require('fs');
 const gulp = require('gulp');
 const header = require('gulp-header');
 const concat = require('gulp-concat');
-const webserver = require('gulp-webserver');
 
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
@@ -40,5 +39,4 @@ gulp.task('watch', function () {
         'package.json',
         'header.txt',
     ], gulp.series('default'));
-    gulp.src('./').pipe(webserver());
 });
