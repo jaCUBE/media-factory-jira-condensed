@@ -45,6 +45,7 @@ Wanna contribute? Great!
 
     - **❗  Replace your own `// @require` filepath according to your cloned folder.**
     - Example filepath: `file:///C:/dev/media-factory-jira-condensed/dist/KanbanCondensedTampermonkey.js`
+    - Final Tampermonkey dev script template:
 
     ```
     // ==UserScript==
