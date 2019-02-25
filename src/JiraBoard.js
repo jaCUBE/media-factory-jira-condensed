@@ -15,9 +15,9 @@ class JiraBoard {
         this.bind();
         this.removeHeader();
         this.initKeyboardShortcut();
+        this.initSidebar();
 
         this.filter = new JiraFilter();
-        CONFIG.open();
     }
 
     /**
@@ -65,11 +65,52 @@ class JiraBoard {
      */
     initKeyboardShortcut() {
         $(document).on('keydown', function (e) {
-            var tag = e.target.tagName.toLowerCase();
+            const tag = e.target.tagName.toLowerCase();
 
             if (e.which === 70 && tag !== 'input' && tag !== 'textarea') {
                 e.preventDefault();
                 $('.jira-media-factory').focus();
+            }
+        });
+    }
+
+    /**
+     * Add buttons to sidebar.
+     */
+    initSidebar() {
+        const sidebar = $('.aui-sidebar');
+        const sidebarBody = sidebar.find('.aui-sidebar-body');
+        const sidebarNav = sidebarBody.find('.aui-nav');
+
+        const icons = CONFIG.icons;
+
+        const generateNav = nav => `
+        <li>
+            <a class="aui-nav-item " href="${nav.link || '#'}">
+                <span class="aui-icon aui-icon-large agile-icon-${nav.icon}" style="background-image: url('${icons[nav.icon]}'); background-size: cover;"></span>
+                <span class="aui-nav-item-label" title="${nav.label}">${nav.label}</span>
+            </a>
+        </li>
+        `;
+
+        const navs = [
+            {
+                icon: 'settings',
+                label: 'Settings',
+                onClick: () => CONFIG.open(),
+            },
+            {
+                icon: 'mf-logo',
+                label: 'MF',
+                link: 'https://mediafactory.cz/'
+            }
+        ];
+
+        navs.forEach(nav => {
+            const navElement = $(generateNav(nav)).appendTo(sidebarNav);
+
+            if (nav.onClick) {
+                navElement.on('click', nav.onClick);
             }
         });
     }

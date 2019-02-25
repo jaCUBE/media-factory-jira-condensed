@@ -2,7 +2,6 @@ const fs = require('fs');
 
 const gulp = require('gulp');
 const header = require('gulp-header');
-const concat = require('gulp-concat');
 
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
@@ -18,11 +17,11 @@ gulp.task('default', () => {
     const author = `// @author       ${formatUser(pkg.author)}`;
     const contributors = (pkg.contributors || []).map(formatUser).map(formattedUser => `// @contributor  ${formattedUser}`).join('\n');
 
-    // Compile and minify
+    // Compile and minify JS
     return gulp.src('./src/index.js')
         .pipe(webpackStream(webpackConfig, webpack))
         .pipe(header(fs.readFileSync('./header.txt', 'utf8') + '\n', {
-            pkg: pkg,
+            pkg,
             author,
             contributors,
         }))

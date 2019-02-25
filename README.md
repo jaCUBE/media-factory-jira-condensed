@@ -54,6 +54,8 @@ Wanna contribute? Great!
     // @description  DEVELOPER VERSION. Make your eyes *not* to bleed with new board.
     // @match        *jira.mediafactory.cz/secure/RapidBoard.jspa?*rapidView=*
     // @require      <------REPLACE-ME-WITH-YOUR-FILEPATH------>
+    // @grant        GM_setValue
+    // @grant        GM_getValue
     // ==/UserScript==
     ```
 
