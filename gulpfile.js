@@ -9,15 +9,24 @@ const webpackConfig = require('./webpack.config');
 
 const pkg = require('./package.json');
 
-gulp.task('default', () => {
+gulp.task('dev', () => {
 
     // UserScript tag
-    const formatUser = user => `${user.name} <${user.email}> (${user.url})`;
+    const formatUserUrl = url => url && `(${url})`;
+    const formatUserEmail = email => email && `<${email}>`;
+    const formatUser = user => `${user.name} ${formatUserEmail(user.email)} ${formatUserUrl(user.url)}`;
+    
+    const formatAuthor = author =>
+        `// @author       ${formatUser(author)}`;
+    const formatContributor = contributor =>
+        `// @contributor  ${formatUser(contributor)}`;
 
-    const author = `// @author       ${formatUser(pkg.author)}`;
-    const contributors = (pkg.contributors || []).map(formatUser).map(formattedUser => `// @contributor  ${formattedUser}`).join('\n');
+    const author = formatAuthor(pkg.author);
+    const contributors = (pkg.contributors || [])
+        .map(formatContributor)
+        .join('\n');
 
-    // Compile and minify JS
+    // Compile JS
     return gulp.src('./src/index.js')
         .pipe(webpackStream(webpackConfig, webpack))
         .pipe(header(fs.readFileSync('./header.txt', 'utf8') + '\n', {
@@ -29,7 +38,8 @@ gulp.task('default', () => {
 });
 
 gulp.task('dist', () => {
-
+    webpackConfig.mode = 'production';
+    return Promise.resolve(gulp.series('dev'));
 });
 
 gulp.task('watch', function () {
@@ -39,3 +49,5 @@ gulp.task('watch', function () {
         'header.txt',
     ], gulp.series('default'));
 });
+
+gulp.task('default', gulp.series('dist'));

@@ -1,6 +1,6 @@
 {
     "name": "media-factory-jira-condensed",
-    "version": "4.1.2",
+    "version": "4.2.0",
     "description": "A tiny script to make JIRA kanban board better... like... *not* eyes bleeding.",
     "main": "gulpfile.js",
     "devDependencies": {
@@ -19,7 +19,8 @@
         "webpack-stream": "^5.2.1"
     },
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "watch": "npx gulp watch"
     },
     "repository": {
         "type": "git",

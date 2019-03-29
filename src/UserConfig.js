@@ -80,6 +80,7 @@ class UserConfig {
         return {
             'settings': this.config.get('icons.sidebar.settings'),
             'mf-logo': this.config.get('icons.sidebar.mf-logo'),
+            'github-logo': this.config.get('icons.sidebar.github-logo'),
         };
     }
 
@@ -150,9 +151,9 @@ const gmConfig = new GM_configStruct({
         /*-- Style --*/
         'labels.style.font-size': {
             'section': ['', 'Style'],
-            'label': 'Font size',
+            'label': 'Font size (px)',
             'labelPos': 'left',
-            'type': 'text',
+            'type': 'float',
             'default': '9',
         },
         'labels.style.color': {
@@ -208,13 +209,13 @@ const gmConfig = new GM_configStruct({
         /*-- Avatar --*/
         'issues.avatar.width': {
             'section': ['', 'Avatar'],
-            'label': 'Avatar width',
+            'label': 'Avatar width (px)',
             'labelPos': 'left',
             'type': 'float',
             'default': 22.0,
         },
         'issues.avatar.height': {
-            'label': 'Avatar height',
+            'label': 'Avatar height (px)',
             'labelPos': 'left',
             'type': 'float',
             'default': 22.0,
@@ -223,13 +224,13 @@ const gmConfig = new GM_configStruct({
         /*-- Summary --*/
         'issues.summary.description.font-size': {
             'section': ['', 'Summary'],
-            'label': 'Description font size',
+            'label': 'Description font size (px)',
             'labelPos': 'left',
             'type': 'float',
             'default': 12.0,
         },
         'issues.summary.epic.font-size': {
-            'label': 'Epic link font size',
+            'label': 'Epic link font size (px)',
             'type': 'float',
             'default': 9.0,
         },
@@ -237,9 +238,9 @@ const gmConfig = new GM_configStruct({
         /*-- Fix version --*/
         'issues.fix-version.font-size': {
             'section': ['', 'Fix version'],
-            'label': 'Font size',
+            'label': 'Font size (px)',
             'labelPos': 'left',
-            'type': 'text',
+            'type': 'float',
             'default': '9',
         },
         'issues.fix-version.color': {
@@ -261,7 +262,12 @@ const gmConfig = new GM_configStruct({
             'label': 'MediaFactory',
             'type': 'text',
             'default': 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzMiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+IDxnPiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPiAgPHJlY3QgZmlsbD0ibm9uZSIgaWQ9ImNhbnZhc19iYWNrZ3JvdW5kIiBoZWlnaHQ9IjQwMiIgd2lkdGg9IjU4MiIgeT0iLTEiIHg9Ii0xIi8+IDwvZz4gPGc+ICA8dGl0bGU+TGF5ZXIgMTwvdGl0bGU+ICA8cGF0aCBpZD0ic3ZnXzEiIGZpbGw9IiMwMDAwIiBzdHJva2U9IiNlNDBkMGQiIGQ9Im05LjY5NywxNy42Yy0wLjI0MiwwLjA0OSAtMC40MzYsMC4yOTEgLTAuNDg1LDAuNTMzbC0wLjgyNCwzLjgzYy0wLjA0OSwwLjI0MiAwLDAuNDg1IDAuMTk0LDAuNjNsNi43MzksNi43MzljMC4xNDUsMC4xNDUgMC4yOTEsMC4xOTQgMC40ODUsMC4xOTRzMC4zMzksLTAuMDk3IDAuNDg1LC0wLjE5NGMwLDAgMCwwIDAsMGwyLjQyNCwtMi40MjRjMC4yNDIsLTAuMjkxIDAuMTQ1LC0wLjYzIC0wLjA5NywtMC44NzNsLTguMTk0LC04LjI0MmMtMC4yNDIsLTAuMTk0IC0wLjQ4NSwtMC4yOTEgLTAuNzI3LC0wLjE5NGwwLDAuMDAxeiIvPiAgPHBhdGggaWQ9InN2Z18yIiBmaWxsPSIjMDAwMCIgc3Ryb2tlPSIjMDAwIiBkPSJtMTYuMzg4LDMuMTAzYy0wLjI5MSwtMC4yOTEgLTAuNzI3LC0wLjI0MiAtMC45NywwbC0xMi43MDMsMTIuNjU1Yy0wLjI5MSwwLjI5MSAtMC4yOTEsMC43MjcgMCwwLjk3bDIuMjc5LDIuMjc5YzAuMjkxLDAuMjkxIDAuNzI3LDAuMjQyIDAuOTcsMGw0Ljc1MSwtNC43NTJsOS44NDIsOS44NDJjMC4yNDIsMC4yNDIgMC42NzksMC4yNDIgMC45NywwbDIuMjc5LC0yLjI3OWMwLjI5MSwtMC4yOTEgMC4yOTEsLTAuNjc5IDAsLTAuOTdsLTkuNzk0LC05Ljg0MmwxLjg5MSwtMS44OTFsOS43OTQsOS44NDJjMC4yNDIsMC4yNDIgMC42NzksMC4yNDIgMC45NywwbDIuMjc5LC0yLjI3OWMwLjI5MSwtMC4yOTEgMC4yOTEsLTAuNjc5IDAsLTAuOTdsLTEwLjI3OSwtMTAuMzI3YzAsMCAwLDAgMCwwbC0yLjI3OSwtMi4yNzkiLz4gPC9nPjwvc3ZnPg==',
-        }
+        },
+        'icons.sidebar.github-logo': {
+            'label': 'Github',
+            'type': 'text',
+            'default': 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNDM4LjU0OXB4IiBoZWlnaHQ9IjQzOC41NDlweCIgdmlld0JveD0iMCAwIDQzOC41NDkgNDM4LjU0OSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDM4LjU0OSA0MzguNTQ5OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGc+PHBhdGggZD0iTTQwOS4xMzIsMTE0LjU3M2MtMTkuNjA4LTMzLjU5Ni00Ni4yMDUtNjAuMTk0LTc5Ljc5OC03OS44QzI5NS43MzYsMTUuMTY2LDI1OS4wNTcsNS4zNjUsMjE5LjI3MSw1LjM2NWMtMzkuNzgxLDAtNzYuNDcyLDkuODA0LTExMC4wNjMsMjkuNDA4Yy0zMy41OTYsMTkuNjA1LTYwLjE5Miw0Ni4yMDQtNzkuOCw3OS44QzkuODAzLDE0OC4xNjgsMCwxODQuODU0LDAsMjI0LjYzYzAsNDcuNzgsMTMuOTQsOTAuNzQ1LDQxLjgyNywxMjguOTA2YzI3Ljg4NCwzOC4xNjQsNjMuOTA2LDY0LjU3MiwxMDguMDYzLDc5LjIyN2M1LjE0LDAuOTU0LDguOTQ1LDAuMjgzLDExLjQxOS0xLjk5NmMyLjQ3NS0yLjI4MiwzLjcxMS01LjE0LDMuNzExLTguNTYyYzAtMC41NzEtMC4wNDktNS43MDgtMC4xNDQtMTUuNDE3Yy0wLjA5OC05LjcwOS0wLjE0NC0xOC4xNzktMC4xNDQtMjUuNDA2bC02LjU2NywxLjEzNmMtNC4xODcsMC43NjctOS40NjksMS4wOTItMTUuODQ2LDFjLTYuMzc0LTAuMDg5LTEyLjk5MS0wLjc1Ny0xOS44NDItMS45OTljLTYuODU0LTEuMjMxLTEzLjIyOS00LjA4Ni0xOS4xMy04LjU1OWMtNS44OTgtNC40NzMtMTAuMDg1LTEwLjMyOC0xMi41Ni0xNy41NTZsLTIuODU1LTYuNTdjLTEuOTAzLTQuMzc0LTQuODk5LTkuMjMzLTguOTkyLTE0LjU1OWMtNC4wOTMtNS4zMzEtOC4yMzItOC45NDUtMTIuNDE5LTEwLjg0OGwtMS45OTktMS40MzFjLTEuMzMyLTAuOTUxLTIuNTY4LTIuMDk4LTMuNzExLTMuNDI5Yy0xLjE0Mi0xLjMzMS0xLjk5Ny0yLjY2My0yLjU2OC0zLjk5N2MtMC41NzItMS4zMzUtMC4wOTgtMi40MywxLjQyNy0zLjI4OWMxLjUyNS0wLjg1OSw0LjI4MS0xLjI3Niw4LjI4LTEuMjc2bDUuNzA4LDAuODUzYzMuODA3LDAuNzYzLDguNTE2LDMuMDQyLDE0LjEzMyw2Ljg1MWM1LjYxNCwzLjgwNiwxMC4yMjksOC43NTQsMTMuODQ2LDE0Ljg0MmM0LjM4LDcuODA2LDkuNjU3LDEzLjc1NCwxNS44NDYsMTcuODQ3YzYuMTg0LDQuMDkzLDEyLjQxOSw2LjEzNiwxOC42OTksNi4xMzZjNi4yOCwwLDExLjcwNC0wLjQ3NiwxNi4yNzQtMS40MjNjNC41NjUtMC45NTIsOC44NDgtMi4zODMsMTIuODQ3LTQuMjg1YzEuNzEzLTEyLjc1OCw2LjM3Ny0yMi41NTksMTMuOTg4LTI5LjQxYy0xMC44NDgtMS4xNC0yMC42MDEtMi44NTctMjkuMjY0LTUuMTRjLTguNjU4LTIuMjg2LTE3LjYwNS01Ljk5Ni0yNi44MzUtMTEuMTRjLTkuMjM1LTUuMTM3LTE2Ljg5Ni0xMS41MTYtMjIuOTg1LTE5LjEyNmMtNi4wOS03LjYxNC0xMS4wODgtMTcuNjEtMTQuOTg3LTI5Ljk3OWMtMy45MDEtMTIuMzc0LTUuODUyLTI2LjY0OC01Ljg1Mi00Mi44MjZjMC0yMy4wMzUsNy41Mi00Mi42MzcsMjIuNTU3LTU4LjgxN2MtNy4wNDQtMTcuMzE4LTYuMzc5LTM2LjczMiwxLjk5Ny01OC4yNGM1LjUyLTEuNzE1LDEzLjcwNi0wLjQyOCwyNC41NTQsMy44NTNjMTAuODUsNC4yODMsMTguNzk0LDcuOTUyLDIzLjg0LDEwLjk5NGM1LjA0NiwzLjA0MSw5LjA4OSw1LjYxOCwxMi4xMzUsNy43MDhjMTcuNzA1LTQuOTQ3LDM1Ljk3Ni03LjQyMSw1NC44MTgtNy40MjFzMzcuMTE3LDIuNDc0LDU0LjgyMyw3LjQyMWwxMC44NDktNi44NDljNy40MTktNC41NywxNi4xOC04Ljc1OCwyNi4yNjItMTIuNTY1YzEwLjA4OC0zLjgwNSwxNy44MDItNC44NTMsMjMuMTM0LTMuMTM4YzguNTYyLDIxLjUwOSw5LjMyNSw0MC45MjIsMi4yNzksNTguMjRjMTUuMDM2LDE2LjE4LDIyLjU1OSwzNS43ODcsMjIuNTU5LDU4LjgxN2MwLDE2LjE3OC0xLjk1OCwzMC40OTctNS44NTMsNDIuOTY2Yy0zLjksMTIuNDcxLTguOTQxLDIyLjQ1Ny0xNS4xMjUsMjkuOTc5Yy02LjE5MSw3LjUyMS0xMy45MDEsMTMuODUtMjMuMTMxLDE4Ljk4NmMtOS4yMzIsNS4xNC0xOC4xODIsOC44NS0yNi44NCwxMS4xMzZjLTguNjYyLDIuMjg2LTE4LjQxNSw0LjAwNC0yOS4yNjMsNS4xNDZjOS44OTQsOC41NjIsMTQuODQyLDIyLjA3NywxNC44NDIsNDAuNTM5djYwLjIzN2MwLDMuNDIyLDEuMTksNi4yNzksMy41NzIsOC41NjJjMi4zNzksMi4yNzksNi4xMzYsMi45NSwxMS4yNzYsMS45OTVjNDQuMTYzLTE0LjY1Myw4MC4xODUtNDEuMDYyLDEwOC4wNjgtNzkuMjI2YzI3Ljg4LTM4LjE2MSw0MS44MjUtODEuMTI2LDQxLjgyNS0xMjguOTA2QzQzOC41MzYsMTg0Ljg1MSw0MjguNzI4LDE0OC4xNjgsNDA5LjEzMiwxMTQuNTczeiIvPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48L3N2Zz4=',
+        },
     },
 });
 

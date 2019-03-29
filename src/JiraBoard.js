@@ -86,7 +86,7 @@ class JiraBoard {
 
         const generateNav = nav => `
         <li>
-            <a class="aui-nav-item " href="${nav.link || '#'}">
+            <a class="aui-nav-item " href="${nav.link || '#'}" ${nav.link && 'target="_blank"'}">
                 <span class="aui-icon aui-icon-large agile-icon-${nav.icon}" style="background-image: url('${icons[nav.icon]}'); background-size: cover;"></span>
                 <span class="aui-nav-item-label" title="${nav.label}">${nav.label}</span>
             </a>
@@ -101,9 +101,14 @@ class JiraBoard {
             },
             {
                 icon: 'mf-logo',
-                label: 'MF',
-                link: 'https://mediafactory.cz/'
-            }
+                label: 'MEDIA FACTORY',
+                link: 'https://www.mediafactory.cz/',
+            },
+            {
+                icon: 'github-logo',
+                label: 'Github',
+                link: 'https://github.com/jaCUBE/media-factory-jira-condensed',
+            },
         ];
 
         navs.forEach(nav => {
